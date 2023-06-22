@@ -36,3 +36,30 @@
 // console.log(firstName)
 // console.log(lastName)
 //----------------------------------
+
+//Enhanced object
+// const name = "Shruthi";
+//     const age= 27;
+//     const ageMetric = "InYears";
+//     const city= "Udupi";
+
+//     const obj = {
+//       name, 
+//       [`age${ageMetric}`]:age, //ageInYears : 27
+//       city,
+
+//       sayHi(){
+//         console.log("hello world!");
+//       }
+//     }
+
+//     console.log(obj)
+
+// Default Parameters
+//  function greet(firstName, lastName, {salutation = "Hi", suffix="Mrs"}={})
+// {
+//   console.log(suffix +" "+ firstName + " " + lastName + " " +salutation)
+// }
+
+// greet("Shruthi", "Kamath") 
+
