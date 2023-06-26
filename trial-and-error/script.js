@@ -10,7 +10,7 @@
 //     name: "Shruthi",
 //     age: 27,
 //     favoritefood: "rice",
-//     address: 
+//     address:
 //     {
 //         street: "123 main st",
 //         city: "Bangalore"
@@ -21,7 +21,7 @@
 // console.log(street)
 
 // function nameToFirstAndLast (fullName) {
-//    // array: return fullName.split(" ") 
+//    // array: return fullName.split(" ")
 //    // object:
 //    const [firstName, lastName] = fullName.split(" ")
 //    return {
@@ -44,7 +44,7 @@
 //     const city= "Udupi";
 
 //     const obj = {
-//       name, 
+//       name,
 //       [`age${ageMetric}`]:age, //ageInYears : 27
 //       city,
 
@@ -61,5 +61,46 @@
 //   console.log(suffix +" "+ firstName + " " + lastName + " " +salutation)
 // }
 
-// greet("Shruthi", "Kamath") 
+// greet("Shruthi", "Kamath")
+//--------------------------------------------------------------------
+//Generators
+// function* fibonacciGenerator(){
+//     let prevOne = 0;
+//     let prevTwo = 1;
+
+//     yield 0;
+//     yield 1;
+
+//     while (true) { //infinite loop but since it is inside generator function, it will run only when generator.next() is called
+//         const result = prevOne + prevTwo;
+//         yield result;
+//         prevOne = prevTwo;
+//         prevTwo = result;
+//     }
+// }
+// const generator = fibonacciGenerator()
+// console.log(generator.next());
+// console.log(generator.next());
+// console.log(generator.next());
+// console.log(generator.next());
+// console.log(generator.next());
+// console.log(generator.next());
+// console.log(generator.next());
+
+//----------
+// function* idGenerator() {
+//     let currentID = 1
+//     while (true) { 
+//         yield currentID++;
+//   }
+// }
+
+// const generator = idGenerator();
+// console.log(generator.next());
+// console.log(generator.next());
+// console.log(generator.next());
+// console.log(generator.next());
+// console.log(generator.next());    
+//----------------------------------------------------------
+    
 
