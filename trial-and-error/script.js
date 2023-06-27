@@ -90,7 +90,7 @@
 //----------
 // function* idGenerator() {
 //     let currentID = 1
-//     while (true) { 
+//     while (true) {
 //         yield currentID++;
 //   }
 // }
@@ -100,7 +100,26 @@
 // console.log(generator.next());
 // console.log(generator.next());
 // console.log(generator.next());
-// console.log(generator.next());    
+// console.log(generator.next());
 //----------------------------------------------------------
     
+//Bind function
+// window.name = "Global Name";
+// const person = {
+//     name: "Shruthi"
+// };
 
+// function printName() {
+//     console.log(this.name)
+// }
+
+// const newPrintName = printName.bind(person);
+// newPrintName();
+
+// function product(a, b) {
+//   return a * b;
+// }
+// const numbers = [1, 2, 3, 4, 5, 6];
+// const newNumbers = numbers.map(product.bind(null, 3));
+// console.log(newNumbers);
+ //-------------------------------------------
