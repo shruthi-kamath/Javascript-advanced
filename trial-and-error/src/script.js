@@ -123,3 +123,8 @@
 // const newNumbers = numbers.map(product.bind(null, 3));
 // console.log(newNumbers);
  //-------------------------------------------
+
+
+ //Polyfill
+const number = 5
+console.log(Math.double(number))

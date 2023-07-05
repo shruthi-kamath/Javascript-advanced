@@ -1,0 +1,24 @@
+{
+  "name": "javascript-advanced",
+  "version": "1.0.0",
+  "description": "Continuation of JavaScript-basics with advanced topics",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d dest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shruthi-kamath/Javascript-advanced.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shruthi-kamath/Javascript-advanced/issues"
+  },
+  "homepage": "https://github.com/shruthi-kamath/Javascript-advanced#readme",
+  "devDependencies": {
+    "@babel/core": "^7.22.6",
+    "babel-loader": "^9.1.2"
+  }
+}
