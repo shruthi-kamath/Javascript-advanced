@@ -126,5 +126,30 @@
 
 
  //Polyfill
-const number = 5
-console.log(Math.double(number))
+// const number = 5
+// console.log(Math.double(number))
+
+ class animal {
+   constructor(name) {
+     this.name = name;
+   }
+
+   speak() {
+     console.log("I am ${this.name}");
+     }
+     
+     #cleaning_product = 10;
+ }
+
+ class dog extends animal {
+   //it will have all property of class animal
+   constructor(name, owner) {
+     supper(name); //calling constructor from animal class
+     this.owner = owner;
+   }
+
+   speak() {
+     //redefine speak function
+     console.log("bark");
+     }
+ } 
