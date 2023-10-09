@@ -1,6 +1,9 @@
 //Logic of game
 
-export const TILE_STATUS = {
+import { rosybrown } from "color-name";
+import { replace } from "estraverse";
+
+export const TILE_STATUSES = {
     HIDDEN: "hidden",
     MINE: "mine",
     NUMBER: "number",
@@ -14,19 +17,12 @@ export function createBoard(boardSize, numberOfMines) { //how big board is and h
     for (let x = 0; x < boardSize; x++) {
         const row = [] //creating a row for every x
         for (let y = 0; y < boardSize; y++) { //since board is square using boardSize for both sides
-            const element = document.createElement('div'); //creating element to display
-            element.dataset.status = TILE_STATUS.HIDDEN //by default it should be hidden
+           
             const tile = { //creating a new tile which has x and y property
-                element,
                 x,
                 y,
                 mine: minePositions.some(positionMatch.bind(null, {x, y})),
-                get status() {
-                    return this.element.dataset.status
-                },
-                set status(value) {
-                    this.element.dataset.status = value
-                },
+                status: TILE_STATUSES.HIDDEN,
             }
             row.push(tile) // adding tile to the row
         }
@@ -35,28 +31,50 @@ export function createBoard(boardSize, numberOfMines) { //how big board is and h
     return board
 }
 
-export function markTile(tile) {
-    if (tile.status !== TILE_STATUS.HIDDEN && tile.status !== TILE_STATUS.MARKED) {
-        return 
+export function markTile(board, { x, y }) {
+    const tile = board[x][y]
+    if (tile.status !== TILE_STATUSES.HIDDEN &&
+        tile.status !== TILE_STATUSES.MARKED
+    )   {
+        return board
     }
 
-    if (tile.status === TILE_STATUS.MARKED) {
-        tile.status = TILE_STATUS.HIDDEN
+    if (tile.status === TILE_STATUSES.MARKED) {
+        return replaceTile(
+            board,
+            { x, y },
+            {...tile, status : TILE_STATUSES.HIDDEN}
+        )
     } else {
-        tile.status = TILE_STATUS.MARKED
+        return replaceTile(
+           board,
+           { x, y },
+           { ...tile, status: TILE_STATUSES.MARKED }
+        );
     }
 }
 
+function replaceTile(board, position, newTile) {
+    return board.map((row, x) => {
+        return row.map((tile, y) => {
+            if (positionMatch(position, { x, y })) {
+                return newTile;
+            }
+            return tile
+        });
+    })
+}
+
 export function revealTile(board, tile) {
-    if (tile.status !== TILE_STATUS.HIDDEN) {
+    if (tile.status !== TILE_STATUSES.HIDDEN) {
         return 
     }
 
     if (tile.mine) {
-        tile.status = TILE_STATUS.MINE
+        tile.status = TILE_STATUSES.MINE
         return
     }
-    tile.status = TILE_STATUS.NUMBER
+    tile.status = TILE_STATUSES.NUMBER
     const adjacentTiles = nearbyTiles(board, tile)
     const mines = adjacentTiles.filter(t => t.mine)
     if (mines.length === 0) {
@@ -71,10 +89,10 @@ export function checkWin(board) {
         return row.every(tile => {
             return (
                 tile
-                    .status === TILE_STATUS.NUMBER ||
+                    .status === TILE_STATUSES.NUMBER ||
                 (tile.mine &&
-                    (tile.status === TILE_STATUS.HIDDEN ||
-                        tile.status === TILE_STATUS.MARKED))
+                    (tile.status === TILE_STATUSES.HIDDEN ||
+                        tile.status === TILE_STATUSES.MARKED))
             )
         })
     });
@@ -83,7 +101,7 @@ export function checkWin(board) {
 export function checklose(board) {
     return board.some(row => {
         return row.some(tile => {
-            return tile.status === TILE_STATUS.MINE
+            return tile.status === TILE_STATUSES.MINE
         })
     })
 }
